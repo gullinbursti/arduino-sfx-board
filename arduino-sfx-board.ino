@@ -6,14 +6,14 @@
 #include "Consolas-Bold7pt7b.h"
 
 
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 32
-#define OLED_RESET     4
+#define SCREEN_WIDTH    128
+#define SCREEN_HEIGHT    32
+#define OLED_RESET        4
 #define SCREEN_ADDRESS 0x3C
 
+#define ADVANCE_PIN 12
 #define BUZZER_PIN   6
 #define READY_PIN   11
-#define ADVANCE_PIN 13
 
 
 int sounds[20] = { S_CONNECTION, S_DISCONNECTION, S_BUTTON_PUSHED, S_MODE1, S_MODE2, S_MODE3, S_SURPRISE, S_OHOOH, S_OHOOH2, S_CUDDLY, S_SLEEPING, S_HAPPY, S_SUPER_HAPPY, S_HAPPY_SHORT, S_SAD, S_CONFUSED, S_FART1, S_FART2, S_FART3, S_JUMP };
@@ -48,6 +48,8 @@ void setup()  {
 }
 
 void loop() {
+//  Serial.println(digitalRead(ADVANCE_PIN));
+  
   if (digitalRead(ADVANCE_PIN) == HIGH && btnUp) {
 //    Serial.println("BTN DN");
 
@@ -66,6 +68,7 @@ void loop() {
 
     cute.play(sounds[ind]);
     delay(125);
+
 //    cute.play(S_BUTTON_PUSHED);
 //    delay(333);
 //    cute.play(S_SAD);
